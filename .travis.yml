@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t binarythistle/docker-test -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true binarythistle/docker-test npm run test
