@@ -7,3 +7,15 @@ before_install:
 
 script:
     - docker run -e CI=true binarythistle/docker-test npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-southeast-2"
+    app: "docker-test"
+    env: "DockerTest-env"
+    bucket_name: "elasticbeanstalk-ap-southeast-2-275452006273"
+    bucket_path: "docker-test"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
